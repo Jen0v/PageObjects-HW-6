@@ -1,6 +1,8 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
 public class TestBase {
@@ -11,5 +13,9 @@ public class TestBase {
         Configuration.browser = "chrome";
         Configuration.timeout = 10000;
         Configuration.holdBrowserOpen = true;
+    }
+    @AfterAll
+    static void closeAllWindows() {
+        Selenide.closeWebDriver();
     }
 }
