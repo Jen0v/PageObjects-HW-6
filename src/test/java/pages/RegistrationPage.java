@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import pages.component.TableResults;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -26,7 +27,11 @@ public class RegistrationPage {
     TableResults tableResults = new TableResults();
 
     public RegistrationPage openPage() {
-        return null;
+        open("/automation-practice-form");
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+        return this;
     }
 
     public RegistrationPage setFirstName(String value) {
