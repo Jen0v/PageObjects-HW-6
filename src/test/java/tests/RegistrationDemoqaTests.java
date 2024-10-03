@@ -55,6 +55,7 @@ public class RegistrationDemoqaTests extends TestBase {
     @Test
     void FailedRegistrationTest () {
         registrationPage.openPage()
+                .removeBanner()
                 .pressSubmit();
         registrationPage.checkNoResult();
     }
