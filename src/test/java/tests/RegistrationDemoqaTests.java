@@ -9,6 +9,7 @@ public class RegistrationDemoqaTests extends TestBase {
     @Test
     void successfulRegistrationTest() {
         registrationPage.openPage()
+                .removeBanner()
                 .setFirstName("Anna")
                 .setLastName("Jen")
                 .setEmail("anna@googl.com")
@@ -38,6 +39,7 @@ public class RegistrationDemoqaTests extends TestBase {
     @Test
     void minRegistrationTest() {
         registrationPage.openPage()
+                .removeBanner()
                 .setFirstName("Anna")
                 .setLastName("Jen")
                 .setGender("Female")
@@ -53,7 +55,6 @@ public class RegistrationDemoqaTests extends TestBase {
     @Test
     void FailedRegistrationTest () {
         registrationPage.openPage()
-                .setFirstName("Anna")
                 .pressSubmit();
         registrationPage.checkNoResult();
     }

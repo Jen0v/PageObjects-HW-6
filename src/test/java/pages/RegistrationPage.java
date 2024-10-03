@@ -3,13 +3,14 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import pages.component.TableResults;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
-    private SelenideElement firstNameInput = $("#firstName"),
+    private final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
             genterWrapper = $("#genterWrapper"),
@@ -21,7 +22,8 @@ public class RegistrationPage {
             currentAddress = $("#currentAddress"),
             stateModal = $("#react-select-3-input"),
             cityModal = $("#react-select-4-input"),
-            pressSubmit = $("#submit");
+            pressSubmit = $("#submit"),
+            thanksTitle = $("modal-title");
 
     pages.component.CalendarComponent calendarComponent = new pages.component.CalendarComponent();
     TableResults tableResults = new TableResults();
@@ -29,6 +31,9 @@ public class RegistrationPage {
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        return this;
+    }
+    public RegistrationPage removeBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
@@ -109,5 +114,6 @@ public class RegistrationPage {
     }
 
     public void checkNoResult() {
+        thanksTitle.shouldNotBe(exist);
     }
 }
